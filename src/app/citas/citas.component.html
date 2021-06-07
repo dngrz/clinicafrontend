@@ -1,1 +1,21 @@
-<p>citas works!</p>
+<div class="main-content">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Registro de Citas</h4>
+                        <p class="card-category"> Citas programadas</p>
+                    </div>
+                    <div class="card-body">
+                        <ng2-smart-table [settings]="settings" [source]="source" (edit)="onEdit($event)"
+                            (delete)="onDelete($event)" (create)="onAdd($event)"
+                            (userRowSelect)="onUserRowSelect($event)" (rowSelect)="onRowSelect($event)">
+                        </ng2-smart-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

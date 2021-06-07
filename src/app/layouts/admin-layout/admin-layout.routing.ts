@@ -4,14 +4,17 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import { TableListComponent } from '../../table-list/table-list.component';
 import { TypographyComponent } from '../../typography/typography.component';
-import { IconsComponent } from '../../icons/icons.component';
-import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { PacientesComponent } from 'app/pacientes/pacientes.component';
 import { DoctoresComponent } from 'app/doctores/doctores.component';
 import { CitasComponent } from 'app/citas/citas.component';
 import { EspecialidadesComponent } from 'app/especialidades/especialidades.component';
+import { UsuariosComponent } from 'app/usuarios/usuarios.component';
+import { HistoriaComponent } from 'app/historia/historia.component';
+import { NominaComponent } from 'app/nomina/nomina.component';
+import { CostosComponent } from 'app/costos/costos.component';
+import { ImpuestosComponent } from 'app/impuestos/impuestos.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -60,12 +63,15 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'upgrade',        component: UpgradeComponent },
     { path: 'pacientes',      component: PacientesComponent },
     { path: 'doctores',       component: DoctoresComponent },
     { path: 'citas',          component: CitasComponent },
     { path: 'especialidades', component: EspecialidadesComponent },
+    { path: 'usuarios',       component: UsuariosComponent },
+    { path: 'historia',       component: HistoriaComponent },
+    { path: 'nomina',         component: NominaComponent },
+    { path: 'costos',         component: CostosComponent },
+    { path: 'impuestos',      component: ImpuestosComponent },
 ];

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { Especialidad } from 'app/_model/especialidad';
+import { Usuario } from 'app/_model/usuario';
 
 @Component({
-  selector: 'app-especialidades',
-  templateUrl: './especialidades.component.html',
-  styleUrls: ['./especialidades.component.css']
+  selector: 'app-usuarios',
+  templateUrl: './usuarios.component.html',
+  styleUrls: ['./usuarios.component.css']
 })
-export class EspecialidadesComponent implements OnInit {
+export class UsuariosComponent implements OnInit {
 
   settings = {
     mode: 'external',
@@ -38,15 +38,27 @@ export class EspecialidadesComponent implements OnInit {
         title: '#',
         type: 'number',
       },
-      desEspecialidad: {
-        title: 'Especialidad',
+      usuario: {
+        title: 'Usuario',
+        type: 'string'
+      },
+      clave: {
+        title: 'Contraseña',
+        type: 'string'
+      },
+      perfil: {
+        title: 'Perfil',
+        type: 'string'
+      },
+      fecIngreso: {
+        title: 'Fecha de Ingreso',
         type: 'string'
       }
     }
   };
 
   source: LocalDataSource = new LocalDataSource();
-  data: Especialidad[];
+  data: Usuario[];
 
   constructor() { }
 
@@ -78,47 +90,13 @@ export class EspecialidadesComponent implements OnInit {
     //    regToShow.push(rowData);
     // }
     // this.source.load(regToShow);
-    let data: Especialidad[] = [
-      {id:1,  desEspecialidad:"Pediatría"},
-      {id:2,  desEspecialidad:"Medicina General"},
-      {id:3,  desEspecialidad:"Oftalmología"},
-      {id:4,  desEspecialidad:"Otorrinolaringología"},
-      {id:5,  desEspecialidad:"Gastroenterología"},
-      {id:6,  desEspecialidad:"Nutrición"},
-      {id:7,  desEspecialidad:"Radiología"},
-      {id:8,  desEspecialidad:"Nutrición"},
-      {id:9,  desEspecialidad:"Radiología"},
-      {id:10, desEspecialidad:"Radiología"},
-      {id:11,  desEspecialidad:"Pediatría11"},
-      {id:12,  desEspecialidad:"Medicina General"},
-      {id:13,  desEspecialidad:"Oftalmología"},
-      {id:14,  desEspecialidad:"Otorrinolaringología"},
-      {id:15,  desEspecialidad:"Gastroenterología"},
-      {id:16,  desEspecialidad:"Nutrición"},
-      {id:17,  desEspecialidad:"Radiología"},
-      {id:18,  desEspecialidad:"Nutrición"},
-      {id:19,  desEspecialidad:"Radiología"},
-      {id:20, desEspecialidad:"Radiología"},
-      {id:21,  desEspecialidad:"Pediatría"},
-      {id:22,  desEspecialidad:"Medicina General"},
-      {id:23,  desEspecialidad:"Oftalmología"},
-      {id:24,  desEspecialidad:"Otorrinolaringología"},
-      {id:25,  desEspecialidad:"Gastroenterología"},
-      {id:26,  desEspecialidad:"Nutrición"},
-      {id:27,  desEspecialidad:"Radiología"},
-      {id:28,  desEspecialidad:"Nutrición"},
-      {id:29,  desEspecialidad:"Radiología"},
-      {id:30, desEspecialidad:"Radiología"},
-      {id:31,  desEspecialidad:"Pediatría"},
-      {id:32,  desEspecialidad:"Medicina General"},
-      {id:33,  desEspecialidad:"Oftalmología"},
-      {id:34,  desEspecialidad:"Otorrinolaringología"},
-      {id:35,  desEspecialidad:"Gastroenterología"},
-      {id:36,  desEspecialidad:"Nutrición"},
-      {id:37,  desEspecialidad:"Radiología"},
-      {id:38,  desEspecialidad:"Nutrición"},
-      {id:39,  desEspecialidad:"Radiología"},
-      {id:40, desEspecialidad:"Radiología"},
+    let data: Usuario[] = [
+      {id:1,  usuario:"usuario1", clave: "123", perfil:"PACIENTE",fecIngreso:"15-03-2019" },
+      {id:2,  usuario:"secre", clave: "123", perfil:"SECRETARIA",fecIngreso:"15-03-2021" },
+      {id:3,  usuario:"doctor3", clave: "123", perfil:"DOCTOR",fecIngreso:"15-03-2020" },
+      {id:4,  usuario:"doctor4", clave: "123", perfil:"DOCTOR",fecIngreso:"15-03-2020" },
+      {id:5,  usuario:"doctor5", clave: "123", perfil:"DOCTOR",fecIngreso:"15-03-2020" },
+      {id:6,  usuario:"doctor6", clave: "123", perfil:"DOCTOR",fecIngreso:"15-03-2020" },
     ]
     this.source.load(data);
 
