@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatosService } from 'app/_services/datos.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor() { }
+  usuario: any;
+
+  constructor(private datosService:DatosService) { }
 
   ngOnInit() {
+    this.datosService.obtenerDatos().subscribe (data => {
+      if (data){
+        console.log(data);
+      }
+
+      this.usuario = sessionStorage.getItem("CLINICA.usuario");
+      
+    });
   }
 
 }

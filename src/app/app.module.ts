@@ -12,9 +12,6 @@ import { AppComponent } from './app.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { TableListComponent } from './table-list/table-list.component';
-import { TypographyComponent } from './typography/typography.component';
-import { NotificationsComponent } from './notifications/notifications.component';
 import { UpgradeComponent } from './upgrade/upgrade.component';
 import {
   AgmCoreModule
@@ -30,6 +27,8 @@ import { HistoriaComponent } from './historia/historia.component';
 import { NominaComponent } from './nomina/nomina.component';
 import { ImpuestosComponent } from './impuestos/impuestos.component';
 import { CostosComponent } from './costos/costos.component';
+import { RegistroComponent } from './registro/registro.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   imports: [
@@ -40,10 +39,7 @@ import { CostosComponent } from './costos/costos.component';
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    Ng2SmartTableModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    Ng2SmartTableModule
   ],
   declarations: [
     AppComponent,
@@ -57,9 +53,10 @@ import { CostosComponent } from './costos/costos.component';
     NominaComponent,
     ImpuestosComponent,
     CostosComponent,
+    RegistroComponent,
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

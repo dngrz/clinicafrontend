@@ -3,12 +3,11 @@ import { Especialidad } from "./especialidad";
 export class Doctor {
     id?: number;
     numDni?: string;
-    desApellidop?: string;
-    desApellidom?: string;
-    desNombre?: string;
     desEmail?: string;
-    desDireccion?: string;
+    nomCompleto?: string;
+    numColegiatura?: string;
+    estudios?: string;
     fecIngreso?: any;
-    codEspecialidad?: Especialidad[];
+    especialidad: Especialidad;
     
   }

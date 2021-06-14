@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Doctor } from 'app/_model/doctor';
+import { DoctorService } from 'app/_services/doctor.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-doctores',
@@ -34,29 +36,45 @@ export class DoctoresComponent implements OnInit {
       perPage: 30
     },
     columns: {
+      id: {
+        title: '#',
+        type: 'number',
+      },
       numDni: {
         title: 'Nº DNI',
         type: 'string',
       },
-      desApellidop: {
-        title: 'Apellido Paterno',
+      nomCompleto: {
+        title: 'Nombre Completo',
+        type: 'string',
+      },
+      desEmail: {
+        title: 'Email',
         type: 'string'
       },
-      desApellidom:{
-        title: 'Apellido Materno',
+      fecIngreso:{
+        title: 'Fecha de Ingreso',
         type: 'string',
       },
-      desNombre: {
-        title: 'Nombres',
+      numColegiatura:{
+        title: 'Colegiatura',
         type: 'string',
-      }
+      },
+      estudios:{
+        title: 'Estudios',
+        type: 'string',
+      },
+      especialidad:{
+        title: 'Especialidad',
+        type: 'string',
+      },
     }
   };
 
   source: LocalDataSource = new LocalDataSource();
   data: Doctor[];
 
-  constructor() { }
+  constructor(private doctorService: DoctorService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
 
@@ -65,36 +83,35 @@ export class DoctoresComponent implements OnInit {
 
   showInSmartTable(): void {
 
-    // let regToShow : {
-    //     id:number,
-    //     numTema: number,
-    //     seccion: string,
-    //     subSeccion: string,
-    //     comisiones: string,
-    //     estado: string,
-    //     desTema: string }[] = [];
+    this.doctorService.listar().subscribe( data => {
+      if (data){
+        let regToShow : {
+          id: number;
+          numDni: string;
+          nomCompleto: string;
+          desEmail: string;
+          fecIngreso:string;
+          numColegiatura:string;
+          estudios:string;
+          especialidad:string } [] = [];
 
-    // for (var i = 0; i < this.temas.length; i++) {
-    //   let rowData: any;
-    //   rowData = {id: this.temas[i].codTema,
-    //      numTema: this.temas[i].numTema,
-    //      seccion: this.temas[i].desSec,
-    //      subSeccion: this.temas[i].desSubSec,
-    //      comisiones: this.temas[i].desComisiones,
-    //      desTema: '<strong>'+this.temas[i].numTema+'. '+this.temas[i].nomTemaCor+'</strong>&nbsp;'+this.temas[i].desResumen
-    //    }
-    //    regToShow.push(rowData);
-    // }
-    // this.source.load(regToShow);
-    let data: Doctor[] = [
-      {id:1, numDni:"41111111", desApellidop:"dato2", desApellidom:"dato3", desNombre:"dato4"},
-      {id:2, numDni:"41222222", desApellidop:"dato2", desApellidom:"dato3", desNombre:"dato4"},
-      {id:3, numDni:"41333333", desApellidop:"dato2", desApellidom:"dato3", desNombre:"dato4"},
-      {id:4, numDni:"41333333", desApellidop:"dato2", desApellidom:"dato3", desNombre:"dato4"},
-      {id:5, numDni:"41444444", desApellidop:"dato2", desApellidom:"dato3", desNombre:"dato4"}
-    ]
-    this.source.load(data);
+        for (var i = 0; i < data.length; i++) {
+          let rowData: any;
+          rowData = {
+            id: data[i].id,
+            numDni: data[i].numDni,
+            nomCompleto: data[i].nomCompleto,
+            desEmail: data[i].desEmail,
+            fecIngreso: this.datePipe.transform(data[i].fecIngreso,'yyyy-MM-dd'),
+            numColegiatura:data[i].numColegiatura,
+            estudios:data[i].estudios,
+            especialidad:data[i].especialidad.nomEspecialidad }
 
+          regToShow.push(rowData);
+        }
+        this.source.load(regToShow);
+      }
+    });
   }
 
   onEdit(event): void {

@@ -4,12 +4,16 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { RegistroComponent } from './registro/registro.component';
 
 const routes: Routes =[
   {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
+    path: 'login',
+    component: RegistroComponent
+  }, {
+      path: '',
+      redirectTo: 'dashboard',
+      pathMatch: 'full',
   }, {
     path: '',
     component: AdminLayoutComponent,

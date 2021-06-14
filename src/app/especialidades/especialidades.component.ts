@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Especialidad } from 'app/_model/especialidad';
+import { EspecialidadService } from 'app/_services/especialidad.service';
 
 @Component({
   selector: 'app-especialidades',
@@ -38,7 +39,7 @@ export class EspecialidadesComponent implements OnInit {
         title: '#',
         type: 'number',
       },
-      desEspecialidad: {
+      nomEspecialidad: {
         title: 'Especialidad',
         type: 'string'
       }
@@ -48,7 +49,7 @@ export class EspecialidadesComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
   data: Especialidad[];
 
-  constructor() { }
+  constructor(private especialidadService: EspecialidadService) { }
 
   ngOnInit(): void {
 
@@ -57,70 +58,12 @@ export class EspecialidadesComponent implements OnInit {
 
   showInSmartTable(): void {
 
-    // let regToShow : {
-    //     id:number,
-    //     numTema: number,
-    //     seccion: string,
-    //     subSeccion: string,
-    //     comisiones: string,
-    //     estado: string,
-    //     desTema: string }[] = [];
-
-    // for (var i = 0; i < this.temas.length; i++) {
-    //   let rowData: any;
-    //   rowData = {id: this.temas[i].codTema,
-    //      numTema: this.temas[i].numTema,
-    //      seccion: this.temas[i].desSec,
-    //      subSeccion: this.temas[i].desSubSec,
-    //      comisiones: this.temas[i].desComisiones,
-    //      desTema: '<strong>'+this.temas[i].numTema+'. '+this.temas[i].nomTemaCor+'</strong>&nbsp;'+this.temas[i].desResumen
-    //    }
-    //    regToShow.push(rowData);
-    // }
-    // this.source.load(regToShow);
-    let data: Especialidad[] = [
-      {id:1,  desEspecialidad:"Pediatría"},
-      {id:2,  desEspecialidad:"Medicina General"},
-      {id:3,  desEspecialidad:"Oftalmología"},
-      {id:4,  desEspecialidad:"Otorrinolaringología"},
-      {id:5,  desEspecialidad:"Gastroenterología"},
-      {id:6,  desEspecialidad:"Nutrición"},
-      {id:7,  desEspecialidad:"Radiología"},
-      {id:8,  desEspecialidad:"Nutrición"},
-      {id:9,  desEspecialidad:"Radiología"},
-      {id:10, desEspecialidad:"Radiología"},
-      {id:11,  desEspecialidad:"Pediatría11"},
-      {id:12,  desEspecialidad:"Medicina General"},
-      {id:13,  desEspecialidad:"Oftalmología"},
-      {id:14,  desEspecialidad:"Otorrinolaringología"},
-      {id:15,  desEspecialidad:"Gastroenterología"},
-      {id:16,  desEspecialidad:"Nutrición"},
-      {id:17,  desEspecialidad:"Radiología"},
-      {id:18,  desEspecialidad:"Nutrición"},
-      {id:19,  desEspecialidad:"Radiología"},
-      {id:20, desEspecialidad:"Radiología"},
-      {id:21,  desEspecialidad:"Pediatría"},
-      {id:22,  desEspecialidad:"Medicina General"},
-      {id:23,  desEspecialidad:"Oftalmología"},
-      {id:24,  desEspecialidad:"Otorrinolaringología"},
-      {id:25,  desEspecialidad:"Gastroenterología"},
-      {id:26,  desEspecialidad:"Nutrición"},
-      {id:27,  desEspecialidad:"Radiología"},
-      {id:28,  desEspecialidad:"Nutrición"},
-      {id:29,  desEspecialidad:"Radiología"},
-      {id:30, desEspecialidad:"Radiología"},
-      {id:31,  desEspecialidad:"Pediatría"},
-      {id:32,  desEspecialidad:"Medicina General"},
-      {id:33,  desEspecialidad:"Oftalmología"},
-      {id:34,  desEspecialidad:"Otorrinolaringología"},
-      {id:35,  desEspecialidad:"Gastroenterología"},
-      {id:36,  desEspecialidad:"Nutrición"},
-      {id:37,  desEspecialidad:"Radiología"},
-      {id:38,  desEspecialidad:"Nutrición"},
-      {id:39,  desEspecialidad:"Radiología"},
-      {id:40, desEspecialidad:"Radiología"},
-    ]
-    this.source.load(data);
+    this.especialidadService.listar().subscribe( data => {
+      if(data){
+        console.log(data);
+        this.source.load(data);
+      }
+    });
 
   }
 
@@ -154,11 +97,11 @@ export class EspecialidadesComponent implements OnInit {
     //   this.router.navigate(['/pages/tema-agenda/edit'],{ queryParams: { page: 0+"_"+this.agenda.codAgenda } });
   }
 
-  onChangeAgenda(newObj: any) {
+  onChangeSelect(newObj: any) {
     // let selectedObj = JSON.parse(newObj);
     // this.agenda = selectedObj;
     // this.retrieveTemasAgenda();
-    console.log("onChangeAgenda");
+    console.log("onChangeSelect");
   }
 
   onUserRowSelect (evt: any) {

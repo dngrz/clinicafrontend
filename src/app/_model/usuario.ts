@@ -4,4 +4,6 @@ export class Usuario {
     clave?: string;
     perfil?: string;
     fecIngreso?: any;
+    nombreCompleto?: string;
+    rol?: string;
 }

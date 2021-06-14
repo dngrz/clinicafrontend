@@ -1,12 +1,11 @@
 export class Paciente {
     id?: number;
+    nomCompleto?: string;
     numDni?: string;
-    desApellidop?: string;
-    desApellidom?: string;
-    desNombre?: string;
-    codSexo?: string;
+    correo?: string;
+    numTelefono?: string;
     fecNacimiento?: any;
-    desEmail?: string;
-    desDireccion?: string;
+    direccion?: string;
+    edad?: number;
     fecIngreso?: any;
 }
