@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatosService } from 'app/_services/datos.service';
+import { Usuario } from 'app/_model/usuario';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,7 +9,7 @@ import { DatosService } from 'app/_services/datos.service';
 })
 export class UserProfileComponent implements OnInit {
 
-  usuario: any;
+    usuario: Usuario;
 
   constructor(private datosService:DatosService) { }
 
@@ -18,8 +19,8 @@ export class UserProfileComponent implements OnInit {
         console.log(data);
       }
 
-      this.usuario = sessionStorage.getItem("CLINICA.usuario");
-      
+      //this.usuario = sessionStorage.getItem("CLINICA.usuario");
+
     });
   }
 

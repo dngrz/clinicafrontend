@@ -14,9 +14,9 @@ export class EspecialidadesComponent implements OnInit {
     mode: 'external',
     actions: {
       columnTitle: 'Acciones',
-      add: true,
-      edit: true,
-      delete: true,
+      add: false,
+      edit: false,
+      delete: false,
       position: 'left'
     },
     noDataMessage: 'No hay registros',

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Cita } from 'app/_model/cita';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-citas',
@@ -72,7 +73,7 @@ export class CitasComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
   data: Cita[];
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
 
@@ -121,6 +122,7 @@ export class CitasComponent implements OnInit {
     // this.$sessionStorage.store('currentPageSelect', this.localPage );
     // //console.log(this.localPage)
     // this.router.navigate(['/pages/tema-agenda/edit'],{ queryParams: { page: event.data.id+"_"+this.agenda.codAgenda } });
+    this.router.navigate(['/citas/edit'],{ queryParams: { page: event.data.id } });
   }
 
   onDelete(event): void {
@@ -143,6 +145,7 @@ export class CitasComponent implements OnInit {
     //   this.$sessionStorage.store('currentPageSelect', this.localPage );
     //   //
     //   this.router.navigate(['/pages/tema-agenda/edit'],{ queryParams: { page: 0+"_"+this.agenda.codAgenda } });
+    this.router.navigate(['/citas/new'],{ queryParams: { page: 0 } });
   }
 
   onChangeAgenda(newObj: any) {

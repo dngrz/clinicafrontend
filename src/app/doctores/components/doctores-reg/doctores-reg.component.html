@@ -1,0 +1,72 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Registro de Doctor</h4>
+                        <p class="card-category">Información del registro de Doctor</p>
+                    </div>
+                    <div class="card-body">
+                        <form name="editForm" role="form" #editForm="ngForm">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="ID" [(ngModel)]="doctor.id" name="id" disabled>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Nº DNI" [(ngModel)]="doctor.numDni" name="numDni">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Nombre Completo" [(ngModel)]="doctor.nomCompleto" name="nomCompleto">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Email" [(ngModel)]="doctor.desEmail" name="desEmail">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput [matDatepicker]="fecIngreso" placeholder="Fecha de ingreso" [(ngModel)]="doctor.fecIngreso" name="fecIngreso">
+                                        <mat-datepicker-toggle matSuffix [for]="fecIngreso"></mat-datepicker-toggle>
+                                        <mat-datepicker #fecIngreso></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Colegiatura" [(ngModel)]="doctor.numColegiatura" name="numColegiatura">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Estudios"  [(ngModel)]="doctor.estudios" name="estudios">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select name="especialidad" [ngModel]="especialidadSel | json" (ngModelChange)="onChangeSelect($event)" placeholder="Especialidad">
+                                            <mat-option *ngFor="let item of especialidades" [value]="item | json" >
+                                            {{ item.nomEspecialidad}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <!-- <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
+                            <div class="clearfix"></div> -->
+                            <button mat-raised-button type="submit" [disabled]="editForm.form.invalid" class="btn btn-danger pull-right" (click)="save()" style="float:right">
+                                <span class="fa fa-save"></span>&nbsp;&nbsp;<span>Guardar</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

@@ -53,8 +53,7 @@ import { DatePipe } from '@angular/common';
     NominaComponent,
     ImpuestosComponent,
     CostosComponent,
-    RegistroComponent,
-
+    RegistroComponent
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

@@ -1,0 +1,75 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Registro de Paciente</h4>
+                        <p class="card-category">Información del registro de Paciente</p>
+                    </div>
+                    <div class="card-body">
+                        <form name="editForm" role="form" #editForm="ngForm">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="ID" disabled>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Nº DNI">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Nombre Completo">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Email" type="email">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Teléfono">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Dirección">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Edad">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput [matDatepicker]="fecha_nacimiento" placeholder="Fecha de Nacimiento"
+                                            type="fecha_nacimiento">
+                                        <mat-datepicker-toggle matSuffix [for]="fecha_nacimiento"></mat-datepicker-toggle>
+                                        <mat-datepicker #fecha_nacimiento></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput [matDatepicker]="fecha_ingreso" placeholder="Fecha de ingreso"
+                                            type="fecha_ingreso">
+                                        <mat-datepicker-toggle matSuffix [for]="fecha_ingreso"></mat-datepicker-toggle>
+                                        <mat-datepicker #fecha_ingreso></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" [disabled]="editForm.form.invalid"
+                                class="btn btn-danger pull-right" (click)="save()" style="float:right">
+                                <span class="fa fa-save"></span>&nbsp;&nbsp;<span>Guardar</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

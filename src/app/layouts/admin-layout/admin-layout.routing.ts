@@ -12,6 +12,10 @@ import { HistoriaComponent } from 'app/historia/historia.component';
 import { NominaComponent } from 'app/nomina/nomina.component';
 import { CostosComponent } from 'app/costos/costos.component';
 import { ImpuestosComponent } from 'app/impuestos/impuestos.component';
+import { DoctoresRegComponent } from 'app/doctores/components/doctores-reg/doctores-reg.component';
+import { PacientesRegComponent } from 'app/pacientes/components/pacientes-reg/pacientes-reg.component';
+import { HistoriaRegComponent } from 'app/historia/components/historia-reg/historia-reg.component';
+import { CitasRegComponent } from 'app/citas/components/citas-reg/citas-reg.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -56,16 +60,24 @@ export const AdminLayoutRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
-    { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user-profile',   component: UserProfileComponent },
-    { path: 'upgrade',        component: UpgradeComponent },
-    { path: 'pacientes',      component: PacientesComponent },
-    { path: 'doctores',       component: DoctoresComponent },
-    { path: 'citas',          component: CitasComponent },
-    { path: 'especialidades', component: EspecialidadesComponent },
-    { path: 'usuarios',       component: UsuariosComponent },
-    { path: 'historia',       component: HistoriaComponent },
-    { path: 'nomina',         component: NominaComponent },
-    { path: 'costos',         component: CostosComponent },
-    { path: 'impuestos',      component: ImpuestosComponent },
+    { path: 'dashboard',           component: DashboardComponent },
+    { path: 'user-profile',        component: UserProfileComponent },
+    { path: 'upgrade',             component: UpgradeComponent },
+    { path: 'pacientes',           component: PacientesComponent },
+    { path: 'doctores',            component: DoctoresComponent },
+    { path: 'citas',               component: CitasComponent },
+    { path: 'especialidades',      component: EspecialidadesComponent },
+    { path: 'usuarios',            component: UsuariosComponent },
+    { path: 'historia',            component: HistoriaComponent },
+    { path: 'nomina',              component: NominaComponent },
+    { path: 'costos',              component: CostosComponent },
+    { path: 'impuestos',           component: ImpuestosComponent },
+    { path: 'doctores/edit',       component: DoctoresRegComponent },
+    { path: 'doctores/new',        component: DoctoresRegComponent },
+    { path: 'historia/edit',       component: HistoriaRegComponent },
+    { path: 'historia/new',        component: HistoriaRegComponent },
+    { path: 'citas/edit',          component: CitasRegComponent },
+    { path: 'citas/new',           component: CitasRegComponent },
+    { path: 'pacientes/edit',      component: PacientesRegComponent },
+    { path: 'pacientes/new',       component: PacientesRegComponent }
 ];

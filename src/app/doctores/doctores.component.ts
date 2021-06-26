@@ -3,6 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { Doctor } from 'app/_model/doctor';
 import { DoctorService } from 'app/_services/doctor.service';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-doctores',
@@ -74,7 +75,7 @@ export class DoctoresComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
   data: Doctor[];
 
-  constructor(private doctorService: DoctorService, private datePipe: DatePipe) { }
+  constructor(private doctorService: DoctorService, private datePipe: DatePipe, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -120,6 +121,7 @@ export class DoctoresComponent implements OnInit {
     // this.$sessionStorage.store('currentPageSelect', this.localPage );
     // //console.log(this.localPage)
     // this.router.navigate(['/pages/tema-agenda/edit'],{ queryParams: { page: event.data.id+"_"+this.agenda.codAgenda } });
+    this.router.navigate(['/doctores/edit'], { queryParams: { page: event.data.id } });
   }
 
   onDelete(event): void {
@@ -141,14 +143,14 @@ export class DoctoresComponent implements OnInit {
     //   this.localPage = this.source.getPaging();
     //   this.$sessionStorage.store('currentPageSelect', this.localPage );
     //   //
-    //   this.router.navigate(['/pages/tema-agenda/edit'],{ queryParams: { page: 0+"_"+this.agenda.codAgenda } });
+    this.router.navigate(['/doctores/new'], { queryParams: { page: "0" } });
   }
 
   onChangeAgenda(newObj: any) {
     // let selectedObj = JSON.parse(newObj);
     // this.agenda = selectedObj;
     // this.retrieveTemasAgenda();
-    console.log("onChangeAgenda");
+    console.log("onChange");
   }
 
   onUserRowSelect (evt: any) {
@@ -164,6 +166,8 @@ export class DoctoresComponent implements OnInit {
     // this.temaAgendaSel.numTema = evt["data"]["numTema"];
     // this.rowDataSel = evt["data"];
   }
+
+
 
 
 }
