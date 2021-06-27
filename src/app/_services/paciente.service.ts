@@ -13,4 +13,19 @@ export class PacienteService {
   listar(): Observable<Paciente[]>{
     return this.http.get<Paciente[]>("http://localhost:8080/pacientes");
   }
+
+  obtener(id:number): Observable<Paciente>{
+    return this.http.get<Paciente>("http://localhost:8080/pacientes/"+id);
+  }
+
+  create(paciente: Paciente): Observable<Paciente> {
+    let copy: Paciente = Object.assign({}, paciente);
+    return this.http.post<Paciente>("http://localhost:8080/pacientes", copy);
+  }
+
+  update(paciente: Paciente): Observable<Paciente> {
+    let copy: Paciente = Object.assign({}, paciente);
+    return this.http.put<Paciente>("http://localhost:8080/pacientes", copy);
+  }
+
 }

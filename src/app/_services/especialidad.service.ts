@@ -13,8 +13,5 @@ export class EspecialidadService {
 
   listar(): Observable<Especialidad[]>{
     return this.http.get<Especialidad[]>("http://localhost:8080/especialidades");
-    //console.log(contribuyente);
-    //return this.http.get<Contribuyente>(ConstantesUris.URI_CONSULTA_CONTRIBUYENTE + numRuc);
-    //return of(contribuyente);
-}
+  }
 }

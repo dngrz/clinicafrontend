@@ -4,12 +4,20 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Historias Clínicas</h4>
                         <p class="card-category">Mantenimiento de Historias Clínicas</p>
                     </div>
                     <div class="card-body">
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-select name="paciente" [ngModel]="pacienteSel | json" (ngModelChange)="onChangeSelect($event)" placeholder="Paciente">
+                                    <mat-option *ngFor="let item of pacientes" [value]="item | json" >
+                                    {{ item.nomCompleto}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
                         <ng2-smart-table [settings]="settings" [source]="source" (edit)="onEdit($event)"
                             (delete)="onDelete($event)" (create)="onAdd($event)"
                             (userRowSelect)="onUserRowSelect($event)" (rowSelect)="onRowSelect($event)">

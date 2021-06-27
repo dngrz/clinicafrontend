@@ -41,6 +41,7 @@ import { CitasRegComponent } from 'app/citas/components/citas-reg/citas-reg.comp
     EspecialidadesRegComponent,
     HistoriaRegComponent,
     CitasRegComponent,
+    HistoriaRegComponent,
     PacientesRegComponent,
     UpgradeComponent,
   ]

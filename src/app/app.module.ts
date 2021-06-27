@@ -29,6 +29,12 @@ import { ImpuestosComponent } from './impuestos/impuestos.component';
 import { CostosComponent } from './costos/costos.component';
 import { RegistroComponent } from './registro/registro.component';
 import { DatePipe } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRippleModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   imports: [
@@ -39,7 +45,13 @@ import { DatePipe } from '@angular/common';
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+    MatButtonModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTooltipModule
   ],
   declarations: [
     AppComponent,

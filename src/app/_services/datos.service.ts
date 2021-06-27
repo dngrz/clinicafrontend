@@ -12,8 +12,5 @@ export class DatosService {
 
   obtenerDatos(): Observable<Resultado>{
     return this.http.get<Resultado>("http://localhost:8080/datos");
-    //console.log(contribuyente);
-    //return this.http.get<Contribuyente>(ConstantesUris.URI_CONSULTA_CONTRIBUYENTE + numRuc);
-    //return of(contribuyente);
-}
+  }
 }

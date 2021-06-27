@@ -12,53 +12,53 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="ID" disabled>
+                                        <input matInput placeholder="ID" [(ngModel)]="paciente.id" name="id" disabled>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Nº DNI">
+                                        <input matInput placeholder="Nº DNI" [(ngModel)]="paciente.numDni" name="numDni">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Nombre Completo" [(ngModel)]="paciente.nomCompleto" name="nomCompleto">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Nombre Completo">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Email" type="email">
+                                        <input matInput placeholder="Email" [(ngModel)]="paciente.correo" name="correo">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Teléfono">
+                                        <input matInput placeholder="Teléfono" [(ngModel)]="paciente.numTelefono" name="numTelefono">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Dirección">
+                                        <input matInput placeholder="Dirección" [(ngModel)]="paciente.direccion" name="direccion">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Edad">
+                                        <input matInput placeholder="Edad" [(ngModel)]="paciente.edad" name="edad">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput [matDatepicker]="fecha_nacimiento" placeholder="Fecha de Nacimiento"
-                                            type="fecha_nacimiento">
-                                        <mat-datepicker-toggle matSuffix [for]="fecha_nacimiento"></mat-datepicker-toggle>
-                                        <mat-datepicker #fecha_nacimiento></mat-datepicker>
+                                        <input matInput [matDatepicker]="fecNacimiento" placeholder="Fecha de Nacimiento"
+                                        [(ngModel)]="paciente.fecNacimiento" name="fecNacimiento">
+                                        <mat-datepicker-toggle matSuffix [for]="fecNacimiento"></mat-datepicker-toggle>
+                                        <mat-datepicker #fecNacimiento></mat-datepicker>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput [matDatepicker]="fecha_ingreso" placeholder="Fecha de ingreso"
-                                            type="fecha_ingreso">
-                                        <mat-datepicker-toggle matSuffix [for]="fecha_ingreso"></mat-datepicker-toggle>
-                                        <mat-datepicker #fecha_ingreso></mat-datepicker>
+                                        <input matInput [matDatepicker]="fecIngreso" placeholder="Fecha de ingreso"
+                                        [(ngModel)]="paciente.fecIngreso" name="fecIngreso">
+                                        <mat-datepicker-toggle matSuffix [for]="fecIngreso"></mat-datepicker-toggle>
+                                        <mat-datepicker #fecIngreso></mat-datepicker>
                                     </mat-form-field>
                                 </div>
                             </div>
