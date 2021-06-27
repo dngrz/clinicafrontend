@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'app/_model/user';
+import { UsuariosService } from 'app/_services/usuarios.service';
+import { DatosService } from 'app/_services/datos.service';
 
 @Component({
   selector: 'app-registro',
@@ -17,11 +19,15 @@ export class RegistroComponent implements OnInit {
    password: ['']
  })
 
-  constructor(private router: Router, private fb: FormBuilder) { }
+  constructor(private router: Router, private fb: FormBuilder, private usuariosService: UsuariosService, private datosService:DatosService) { }
 
   ngOnInit(): void {
-    
-    
+    sessionStorage.removeItem("CLINICA.usuario")
+    this.datosService.obtenerDatos().subscribe (data => {
+      if (data){
+        console.log(data);
+      }
+    });
   }
 
   onLogin(): void{
@@ -35,9 +41,20 @@ export class RegistroComponent implements OnInit {
       nombreCompleto: "Ruiz Vargas, Paul"
     }
 
-    sessionStorage.setItem('CLINICA.usuario',JSON.stringify(usuarioLog));
-
-    this.router.navigate(['/user-profile']);
+    this.usuariosService.obtenerPorUsuario(formValue["username"]).subscribe(data => {
+      if (data){
+        if(data.clave===formValue["password"]) {
+          sessionStorage.setItem('CLINICA.usuario',JSON.stringify(data));
+          this.router.navigate(['/user-profile']);
+        } else {
+          alert("ERROR CLAVE INCORRECTA")
+        }
+        
+      } else {
+        alert("ERROR NO EXISTE EL USUARIO")
+      }
+    });
+    
 
   }
 

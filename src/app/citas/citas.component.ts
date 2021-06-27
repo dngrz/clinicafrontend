@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Cita } from 'app/_model/cita';
 import { Router } from '@angular/router';
+import { CitaService } from 'app/_services/cita.service';
+import { DoctorService } from 'app/_services/doctor.service';
+import { EspecialidadService } from 'app/_services/especialidad.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-citas',
@@ -61,11 +65,11 @@ export class CitasComponent implements OnInit {
       },
       indCancelado: {
         title: 'Cancelado',
-        type: 'boolean'
+        type: 'string'
       },
       mtoCita: {
         title: 'Monto',
-        type: 'boolean'
+        type: 'number'
       },
     }
   };
@@ -73,7 +77,10 @@ export class CitasComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
   data: Cita[];
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, 
+    private citaService: CitaService, 
+    private doctorService: DoctorService, 
+    private especialidadService: EspecialidadService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
 
@@ -82,37 +89,38 @@ export class CitasComponent implements OnInit {
 
   showInSmartTable(): void {
 
-    let regToShow : {
-        id:number,
-        fecCita: number,
-        horCita: string,
-        paciente: string,
-        especialidad: string,
-        doctor: string,
-        indCancelado: boolean, 
-        mtoCita: number } [] = [];
+    this.citaService.listar().subscribe(data => {
+      if(data) {
+        console.log(data);
+        this.data = data;
+        let regToShow : {
+           id:number,
+           fecCita: number,
+           horCita: string,
+           paciente: string,
+           especialidad: string,
+           doctor: string,
+           indCancelado: string, 
+           mtoCita: number } [] = [];
 
-    // for (var i = 0; i < this.temas.length; i++) {
-    //   let rowData: any;
-    //   rowData = {id: this.temas[i].codTema,
-    //      numTema: this.temas[i].numTema,
-    //      seccion: this.temas[i].desSec,
-    //      subSeccion: this.temas[i].desSubSec,
-    //      comisiones: this.temas[i].desComisiones,
-    //      desTema: '<strong>'+this.temas[i].numTema+'. '+this.temas[i].nomTemaCor+'</strong>&nbsp;'+this.temas[i].desResumen
-    //    }
-    //    regToShow.push(rowData);
-    // }
-    // this.source.load(regToShow);
-    let data: CitaRow[] = [
-      {id:1,  fecCita:"2021-06-01", horCita:"08:00", paciente: "aaaaaaaa bbbbb cccc", especialidad: "especialidad 1", doctor: "Carlitos", indCancelado: true, mtoCita: 180.00},
-      {id:2,  fecCita:"2021-06-01", horCita:"08:00", paciente: "aaaaaaaa bbbbb dddd", especialidad: "especialidad 2", doctor: "Paul", indCancelado: true, mtoCita: 190.00},
-      {id:3,  fecCita:"2021-06-01", horCita:"08:00", paciente: "aaaaaaaa bbbbb gggg", especialidad: "especialidad 3", doctor: "Victor", indCancelado: true, mtoCita: 200.00},
-      {id:4,  fecCita:"2021-06-01", horCita:"08:00", paciente: "aaaaaaaa bbbbb uuuu", especialidad: "especialidad 4", doctor: "Carlitos", indCancelado: true, mtoCita: 210.00},
-      {id:5,  fecCita:"2021-06-01", horCita:"08:00", paciente: "aaaaaaaa bbbbb vvvv", especialidad: "especialidad 5", doctor: "Victor", indCancelado: false, mtoCita: 220.00},
-      {id:6,  fecCita:"2021-06-01", horCita:"08:00", paciente: "aaaaaaaa bbbbb eeee", especialidad: "especialidad 6", doctor: "Jhon", indCancelado: false, mtoCita: 230.00},
-    ]
-    this.source.load(data);
+        for (var i = 0; i < data.length; i++) {
+            let rowData: any;
+            rowData = {
+              id: data[i].id,
+              fecCita: this.datePipe.transform(data[i].fecCita,'yyyy-MM-dd'),
+              horCita: data[i].horCita,
+              paciente: data[i].paciente.nomCompleto,
+              especialidad: data[i].especialidad.nomEspecialidad,
+              doctor: data[i].doctor.nomCompleto,
+              indCancelado: (data[i].indCancelado) ? "SI": "NO",
+              mtoCita: data[i].mtoCita}
+  
+            regToShow.push(rowData);
+          }
+          this.source.load(regToShow);
+      }
+
+    });
 
   }
 
@@ -172,13 +180,3 @@ export class CitasComponent implements OnInit {
 
 }
 
-export interface CitaRow {
-    id:number,
-    fecCita?: any,
-    horCita?: any,
-    paciente: string,
-    especialidad: string,
-    doctor: string,
-    indCancelado: boolean, 
-    mtoCita: number
-}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Usuario } from 'app/_model/usuario';
+import { UsuariosService } from 'app/_services/usuarios.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-usuarios',
@@ -13,9 +15,9 @@ export class UsuariosComponent implements OnInit {
     mode: 'external',
     actions: {
       columnTitle: 'Acciones',
-      add: true,
-      edit: true,
-      delete: true,
+      add: false,
+      edit: false,
+      delete: false,
       position: 'left'
     },
     noDataMessage: 'No hay registros',
@@ -53,6 +55,14 @@ export class UsuariosComponent implements OnInit {
       fecIngreso: {
         title: 'Fecha de Ingreso',
         type: 'string'
+      },
+      idPaciente: {
+        title: 'ID Paciente',
+        type: 'number'
+      },
+      idDoctor: {
+        title: 'ID Doctor',
+        type: 'number'
       }
     }
   };
@@ -60,7 +70,7 @@ export class UsuariosComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
   data: Usuario[];
 
-  constructor() { }
+  constructor(private usuarioService: UsuariosService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
 
@@ -69,37 +79,35 @@ export class UsuariosComponent implements OnInit {
 
   showInSmartTable(): void {
 
-    // let regToShow : {
-    //     id:number,
-    //     numTema: number,
-    //     seccion: string,
-    //     subSeccion: string,
-    //     comisiones: string,
-    //     estado: string,
-    //     desTema: string }[] = [];
+    this.usuarioService.listar().subscribe(data => {
+      if (data) {
+        let regToShow : {
+          id: number;
+          usuario?: string;
+          clave?: string;
+          perfil?: string;
+          fecIngreso?: any;
+          idPaciente?: number;
+          idDoctor?: number;        
+        } [] = [];
 
-    // for (var i = 0; i < this.temas.length; i++) {
-    //   let rowData: any;
-    //   rowData = {id: this.temas[i].codTema,
-    //      numTema: this.temas[i].numTema,
-    //      seccion: this.temas[i].desSec,
-    //      subSeccion: this.temas[i].desSubSec,
-    //      comisiones: this.temas[i].desComisiones,
-    //      desTema: '<strong>'+this.temas[i].numTema+'. '+this.temas[i].nomTemaCor+'</strong>&nbsp;'+this.temas[i].desResumen
-    //    }
-    //    regToShow.push(rowData);
-    // }
-    // this.source.load(regToShow);
-    let data: Usuario[] = [
-      {id:1,  usuario:"usuario1", clave: "123", perfil:"PACIENTE",fecIngreso:"15-03-2019" },
-      {id:2,  usuario:"secre", clave: "123", perfil:"SECRETARIA",fecIngreso:"15-03-2021" },
-      {id:3,  usuario:"doctor3", clave: "123", perfil:"DOCTOR",fecIngreso:"15-03-2020" },
-      {id:4,  usuario:"doctor4", clave: "123", perfil:"DOCTOR",fecIngreso:"15-03-2020" },
-      {id:5,  usuario:"doctor5", clave: "123", perfil:"DOCTOR",fecIngreso:"15-03-2020" },
-      {id:6,  usuario:"doctor6", clave: "123", perfil:"DOCTOR",fecIngreso:"15-03-2020" },
-    ]
-    this.source.load(data);
+        for (var i = 0; i < data.length; i++) {
+          let rowData: any;
+          rowData = {
+            id: data[i].id,
+            usuario: data[i].usuario,
+            clave: data[i].clave,
+            perfil: data[i].perfil,
+            fecIngreso: this.datePipe.transform(data[i].fecIngreso,'yyyy-MM-dd'),
+            idPaciente: (data[i].paciente) ?  data[i].paciente.id: 0,
+            idDoctor: (data[i].doctor) ?  data[i].doctor.id: 0
+          }
+          regToShow.push(rowData);
+        }
 
+        this.source.load(regToShow);
+      }
+    })
   }
 
   onEdit(event): void {

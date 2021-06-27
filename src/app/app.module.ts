@@ -35,6 +35,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AuthguardGuard } from './_guards/authguard.guard';
 
 @NgModule({
   imports: [
@@ -67,7 +68,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     CostosComponent,
     RegistroComponent
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

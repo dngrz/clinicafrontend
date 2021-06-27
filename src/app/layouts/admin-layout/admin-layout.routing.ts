@@ -16,6 +16,7 @@ import { DoctoresRegComponent } from 'app/doctores/components/doctores-reg/docto
 import { PacientesRegComponent } from 'app/pacientes/components/pacientes-reg/pacientes-reg.component';
 import { HistoriaRegComponent } from 'app/historia/components/historia-reg/historia-reg.component';
 import { CitasRegComponent } from 'app/citas/components/citas-reg/citas-reg.component';
+import { AuthguardGuard } from 'app/_guards/authguard.guard';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -60,24 +61,24 @@ export const AdminLayoutRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
-    { path: 'dashboard',           component: DashboardComponent },
-    { path: 'user-profile',        component: UserProfileComponent },
+    { path: 'dashboard',           component: DashboardComponent, canActivate: [AuthguardGuard] },
+    { path: 'user-profile',        component: UserProfileComponent, canActivate: [AuthguardGuard] },
     { path: 'upgrade',             component: UpgradeComponent },
-    { path: 'pacientes',           component: PacientesComponent },
-    { path: 'doctores',            component: DoctoresComponent },
-    { path: 'citas',               component: CitasComponent },
-    { path: 'especialidades',      component: EspecialidadesComponent },
-    { path: 'usuarios',            component: UsuariosComponent },
-    { path: 'historia',            component: HistoriaComponent },
-    { path: 'nomina',              component: NominaComponent },
-    { path: 'costos',              component: CostosComponent },
-    { path: 'impuestos',           component: ImpuestosComponent },
-    { path: 'doctores/edit',       component: DoctoresRegComponent },
-    { path: 'doctores/new',        component: DoctoresRegComponent },
-    { path: 'historia/edit',       component: HistoriaRegComponent },
-    { path: 'historia/new',        component: HistoriaRegComponent },
-    { path: 'citas/edit',          component: CitasRegComponent },
-    { path: 'citas/new',           component: CitasRegComponent },
-    { path: 'pacientes/edit',      component: PacientesRegComponent },
-    { path: 'pacientes/new',       component: PacientesRegComponent }
+    { path: 'especialidades',      component: EspecialidadesComponent, canActivate: [AuthguardGuard] },
+    { path: 'usuarios',            component: UsuariosComponent, canActivate: [AuthguardGuard] },
+    { path: 'nomina',              component: NominaComponent, canActivate: [AuthguardGuard] },
+    { path: 'costos',              component: CostosComponent, canActivate: [AuthguardGuard] },
+    { path: 'impuestos',           component: ImpuestosComponent, canActivate: [AuthguardGuard] },
+    { path: 'doctores',            component: DoctoresComponent, canActivate: [AuthguardGuard] },
+    { path: 'doctores/edit',       component: DoctoresRegComponent, canActivate: [AuthguardGuard] },
+    { path: 'doctores/new',        component: DoctoresRegComponent, canActivate: [AuthguardGuard] },
+    { path: 'historia',            component: HistoriaComponent, canActivate: [AuthguardGuard] },
+    { path: 'historia/edit',       component: HistoriaRegComponent, canActivate: [AuthguardGuard] },
+    { path: 'historia/new',        component: HistoriaRegComponent, canActivate: [AuthguardGuard] },
+    { path: 'citas',               component: CitasComponent, canActivate: [AuthguardGuard] },
+    { path: 'citas/edit',          component: CitasRegComponent, canActivate: [AuthguardGuard] },
+    { path: 'citas/new',           component: CitasRegComponent, canActivate: [AuthguardGuard] },
+    { path: 'pacientes',           component: PacientesComponent, canActivate: [AuthguardGuard] },
+    { path: 'pacientes/edit',      component: PacientesRegComponent, canActivate: [AuthguardGuard] },
+    { path: 'pacientes/new',       component: PacientesRegComponent, canActivate: [AuthguardGuard] }
 ];

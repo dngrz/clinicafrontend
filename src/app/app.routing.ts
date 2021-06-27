@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { RegistroComponent } from './registro/registro.component';
+import { AuthguardGuard } from './_guards/authguard.guard';
 
 const routes: Routes =[
   {

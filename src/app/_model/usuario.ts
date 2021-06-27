@@ -1,3 +1,6 @@
+import { Paciente } from "./paciente";
+import { Doctor } from "./doctor";
+
 export class Usuario {
     id?: number;
     usuario?: string;
@@ -5,5 +8,6 @@ export class Usuario {
     perfil?: string;
     fecIngreso?: any;
     nombreCompleto?: string;
-    rol?: string;
+    paciente?: Paciente;
+    doctor?: Doctor;
 }
