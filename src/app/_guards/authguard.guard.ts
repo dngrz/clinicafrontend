@@ -21,6 +21,7 @@ export class AuthguardGuard implements CanActivate {
         let perfil: string = this.usuario.perfil;
         if (perfil) {
             let indAcceso: boolean = this.validateAccesoPerfil(perfil, state.url);
+            //let indAcceso=true;
             console.log("indAcceso",indAcceso);
             if (!indAcceso){
                 this.router.navigate(["/user-profile"]);
